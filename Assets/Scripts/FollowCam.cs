@@ -1,0 +1,23 @@
+using UnityEngine;
+
+public class FollowCam : MonoBehaviour
+{
+    public Transform player;         // Reference to the player's transform
+    public Vector3 offset = new Vector3(0, 5, -10); // Default offset (adjust as needed)
+    public float smoothSpeed = 0.125f; // Smoothing factor
+
+    void LateUpdate()
+    {
+        // Calculate the desired position based on player's position + offset
+        Vector3 desiredPosition = player.position + offset;
+
+        // Smoothly move towards the desired position
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+
+        // Update the camera's position
+        transform.position = smoothedPosition;
+
+        // Optionally, make the camera always look at the player
+        transform.LookAt(player);
+    }
+}

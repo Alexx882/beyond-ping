@@ -1,8 +1,10 @@
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using Debug = UnityEngine.Debug;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -114,6 +116,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        var otherGO = other.gameObject;
+        Debug.Log(otherGO);
+        if (otherGO.CompareTag("GravityRadius"))
+        {
+            // inside a planet's gravity
+            Vector2 direction = otherGO.transform.position - transform.position;
+            float distanceSqr = direction.sqrMagnitude;
+            
+            if (distanceSqr == 0f) return;
+            
+            var gravityConstant = 10f;
+            
+            float forceMagnitude = gravityConstant * (otherGO.GetComponentInParent<PlanetGravity>().planetMass * 1) / distanceSqr;
+            Vector2 force = direction.normalized * forceMagnitude;
+
+            rb.AddForce(force);
+        }
+    }
 
     float GetDistanceToCommander()
     {

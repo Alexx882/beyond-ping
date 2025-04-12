@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Obstacle
+  - GravityRadius
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Planet
   - Water
   - UI
   - 
@@ -42,5 +43,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3039981057
+    locked: 0
+  - name: Map
+    uniqueID: 3205857979
+    locked: 0
+  - name: Player
+    uniqueID: 3966984697
+    locked: 0
+  - name: HUD
+    uniqueID: 205656901
+    locked: 0
   m_RenderingLayers:
   - Default
+  - Player

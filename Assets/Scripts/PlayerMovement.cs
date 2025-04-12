@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using Debug = UnityEngine.Debug;
 
 public class PlayerMovement : MonoBehaviour
@@ -17,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public bool isAlive = true;
     public GameObject thruster;
     Rigidbody2D rb;
-    InputAction moveAction;
     TrailRenderer trailRenderer;
     public float maxVelocity = 100.0f;
 
@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        moveAction = InputSystem.actions.FindAction("Move");
         movementQueue = new Queue<(double,Vector2)>();
         trailRenderer = this.GetComponent<TrailRenderer>();
         _thrusterParticleSystem = thruster.GetComponentInChildren<ParticleSystem>();
@@ -39,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButtonDown("Jump"))
         {
             Respawn();
         }
@@ -121,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = 0f;
         this.transform.rotation = Quaternion.identity;
+        
 
         isAlive = true;
     }

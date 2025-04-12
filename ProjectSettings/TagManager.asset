@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Obstacle
+  - GravityRadius
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Planet
   - Water
   - UI
   - 
@@ -44,3 +45,4 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
+  - Player

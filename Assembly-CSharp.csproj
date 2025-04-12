@@ -46,7 +46,9 @@
     <Analyzer Include="/Applications/Unity/Hub/Editor/6000.0.45f1/Unity.app/Contents/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets/Scripts/PlanetGravity.cs" />
     <Compile Include="Assets/Scripts/FollowCam.cs" />
+    <Compile Include="Assets/Scripts/PlayerGravityDrag.cs" />
     <Compile Include="Assets/Scripts/GradientScript.cs" />
     <Compile Include="Assets/Scripts/PlayerMovement.cs" />
     <None Include="Assets/ConnectionGradient/RadialGradient.shader" />

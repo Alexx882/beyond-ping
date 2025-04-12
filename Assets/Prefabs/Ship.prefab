@@ -128,12 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cf19f39139a420f9907dd696fe1eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.5
+  moveSpeed: 1.5
   commander: {fileID: 0}
-  maxDelay: 1.5
+  maxDelay: 2.5
   hasTakenOff: 0
   isAlive: 1
-  maxVelocity: 100
+  maxVelocity: 7
 --- !u!96 &4307472095227082832
 TrailRenderer:
   serializedVersion: 3

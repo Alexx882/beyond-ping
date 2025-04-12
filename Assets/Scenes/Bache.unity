@@ -721,34 +721,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5311876535142779280, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7016113542485264556}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
---- !u!1 &7016113542485264555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5311876535142779280, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
-  m_PrefabInstance: {fileID: 7016113542485264554}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7016113542485264556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7016113542485264555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77cf19f39139a420f9907dd696fe1eda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.25
-  commander: {fileID: 79122899}
-  maxDelay: 1.5
-  hasTakenOff: 0
-  isAlive: 1
-  maxVelocity: 100
 --- !u!4 &7016113542485264558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4563637959820944083, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}

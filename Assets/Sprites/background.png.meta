@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b7e83e1c1ad8ed34ab12f6335261fea6
+guid: 4a97af57a0628b74bbf0de76300e9eb2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4181145701651005893
-    second: BaseStation-removebg-preview_0
+      213: -7443756053782179069
+    second: background_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BaseStation-removebg-preview_0
+      name: background_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 57
-        width: 424
-        height: 439
+        x: 3
+        y: 2
+        width: 995
+        height: 995
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5c14f0decd9660a30800000000000000
-      internalID: 4181145701651005893
+      spriteID: 30356abce4772b890800000000000000
+      internalID: -7443756053782179069
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BaseStation-removebg-preview_0: 4181145701651005893
+      background_0: -7443756053782179069
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

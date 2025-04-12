@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f753da1bf0e6406b9d408e0879adbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityConstant: 10
+  gravityConstant: 5
 --- !u!114 &9007125698848863549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b438774cef042e396ea88f2e0cf25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  linePrefab: {fileID: 1595799750982203258, guid: 81b84bd785f7a45f18e3c5d6d7120845, type: 3}
 --- !u!1 &5668588085441791004
 GameObject:
   m_ObjectHideFlags: 0

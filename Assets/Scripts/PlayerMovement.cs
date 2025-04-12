@@ -166,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    float GetDistanceToCommander()
+    public float GetDistanceToCommander()
     {
         return (commander.transform.position - this.transform.position).magnitude;
         // Debug.Log("Distance: " + distance);

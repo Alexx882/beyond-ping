@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5109425451842675931}
   m_Layer: 0
   m_Name: GameState
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691165ef437b343708019584765ca53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectiblePositions:
-  - {fileID: 0}
+  collectibleSpawnPositions: []
   collectiblePrefab: {fileID: 6028905355299959725, guid: f07e33151f99048a0b13c1e1338d7cfc, type: 3}
   collectedCollectibles: 0

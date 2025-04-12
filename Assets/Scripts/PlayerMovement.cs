@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -8,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 1f;
     public GameObject commander;
     public bool alive = true;
-
+    public float maxDelay = 1.5f;
+    
+    private Queue<(double,Vector2)> movementQueue;
     Rigidbody2D rb;
     InputAction moveAction;
 
@@ -17,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         moveAction = InputSystem.actions.FindAction("Move");
+        movementQueue = new Queue<(double,Vector2)>();
     }
 
     // Update is called once per frame
@@ -28,9 +32,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         MoveOnInput();
-
-        GetDistanceToCommander();
-
+        
         PointInDirectionOfVelocity();
     }
 
@@ -38,10 +40,20 @@ public class PlayerMovement : MonoBehaviour
     {
         if (alive)
         {
-            Vector2 moveValue = moveAction.ReadValue<Vector2>();
-            Debug.Log(moveValue);
-            rb.AddForce(moveValue * moveSpeed);
-            
+            if (moveAction.ReadValue<Vector2>() != Vector2.zero)
+            { 
+                movementQueue.Enqueue((Time.time * 1000, moveAction.ReadValue<Vector2>()));
+            }
+
+            if (movementQueue.Count > 0)
+            {
+                float delay = GetCurrentDelayInMilliseconds();
+                
+                if (movementQueue.Peek().Item1 + delay < Time.time * 1000)
+                {
+                    rb.AddForce(movementQueue.Dequeue().Item2 * moveSpeed);
+                }
+            }
         }
     }
 
@@ -89,9 +101,15 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    void GetDistanceToCommander()
+    float GetDistanceToCommander()
     {
-        var distance = (commander.transform.position - this.transform.position).magnitude;
+        return (commander.transform.position - this.transform.position).magnitude;
         // Debug.Log("Distance: " + distance);
+    }
+
+    float GetCurrentDelayInMilliseconds()
+    {   
+        //Debug.Log(GetDistanceToCommander());
+        return maxDelay / 100 * GetDistanceToCommander() * 1000;
     }
 }

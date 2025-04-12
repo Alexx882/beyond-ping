@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
         MoveOnInput();
         
-        PointInDirectionOfVelocity();
+        // PointInDirectionOfVelocity();
         
         thruster.transform.position = transform.position;
         PointThrusterInInputDirection();

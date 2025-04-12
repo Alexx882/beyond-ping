@@ -5,18 +5,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 1f;
+    public float moveSpeed = .5f;
     public GameObject commander;
-    public bool alive = true;
+
+    public bool isAlive = true;
+
+    public bool hasTakenOff = false;
 
     Rigidbody2D rb;
     InputAction moveAction;
+    TrailRenderer trailRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         moveAction = InputSystem.actions.FindAction("Move");
+        trailRenderer = this.GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
@@ -28,42 +33,46 @@ public class PlayerMovement : MonoBehaviour
         }
 
         MoveOnInput();
+        PointInDirectionOfVelocity();
 
         GetDistanceToCommander();
-
-        PointInDirectionOfVelocity();
     }
 
     private void MoveOnInput()
     {
-        if (alive)
+        if (isAlive)
         {
             Vector2 moveValue = moveAction.ReadValue<Vector2>();
-            Debug.Log(moveValue);
+            if (!hasTakenOff && moveValue.magnitude > 0.1f)
+            {
+                hasTakenOff = true;
+                trailRenderer.emitting = true;
+            }
+
             rb.AddForce(moveValue * moveSpeed);
-            
         }
     }
 
     private void PointInDirectionOfVelocity()
     {
-        if (alive)
+        if (isAlive)
         {
-            // todo
             // Calculate the angle from the velocity direction
             float targetAngle = Mathf.Atan2(-rb.linearVelocity.y, -rb.linearVelocity.x) * Mathf.Rad2Deg;
-
-            transform.rotation = Quaternion.Euler(0f, 0f, targetAngle+90); // Keep rotation on Z-axis
+            transform.rotation = Quaternion.Euler(0f, 0f, targetAngle + 90); // Keep rotation on Z-axis
         }
     }
 
     private void Respawn()
     {
+        trailRenderer.emitting = false;
+        hasTakenOff = false;
         this.transform.position = new Vector3(0, 3, 0);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = 0f;
         this.transform.rotation = Quaternion.identity;
-        alive = true;
+
+        isAlive = true;
     }
 
     /**
@@ -84,7 +93,8 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("DEAD");
-            alive = false;
+            isAlive = false;
+            trailRenderer.emitting = false;
         }
     }
 

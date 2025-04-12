@@ -7,7 +7,7 @@ namespace UI
         public GameObject warningSignal;
         public ConnectivitySignal connectivitySignal;
         public DistanceUI connectivityDistanceUI;
-        public float currentDistance;
+        public PlayerMovement playerMovement;
         public float connectivityDistanceWarning;
         public float maxDistance;
         
@@ -21,6 +21,7 @@ namespace UI
         // Update is called once per frame
         void Update()
         {
+            var currentDistance = playerMovement.GetDistanceToCommander();
             connectivitySignal.currentDistance = currentDistance;
             connectivityDistanceUI.distance = currentDistance;
             warningSignal.SetActive(currentDistance > connectivityDistanceWarning);

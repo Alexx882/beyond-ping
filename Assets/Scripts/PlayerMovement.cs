@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -115,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     {
         trailRenderer.emitting = false;
         hasTakenOff = false;
+        movementQueue.Clear();
         this.transform.position = new Vector3(0, 3, 0);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = 0f;
@@ -151,22 +153,36 @@ public class PlayerMovement : MonoBehaviour
         var otherGO = other.gameObject;
         if (otherGO.CompareTag("GravityRadius"))
         {
-            // inside a planet's gravity
-            Vector2 direction = otherGO.transform.position - transform.position;
-            float distanceSqr = direction.sqrMagnitude;
-            
-            if (distanceSqr == 0f) return;
-            
-            var gravityConstant = 10f;
-            
-            float forceMagnitude = gravityConstant * (otherGO.GetComponentInParent<PlanetGravity>().planetMass * 1) / distanceSqr;
-            Vector2 force = direction.normalized * forceMagnitude;
-
-            rb.AddForce(force);
+            ApplyPlanetGravity(otherGO);
         }
     }
 
-    float GetDistanceToCommander()
+    private void ApplyPlanetGravity(GameObject otherGO)
+    {
+        // inside a planet's gravity
+        Vector2 direction = otherGO.transform.position - transform.position;
+        float distanceSqr = direction.sqrMagnitude;
+            
+        if (distanceSqr == 0f) return;
+            
+        var gravityConstant = 10f;
+            
+        float forceMagnitude = gravityConstant * (otherGO.GetComponentInParent<PlanetGravity>().planetMass * 1) / distanceSqr;
+        Vector2 force = direction.normalized * forceMagnitude;
+
+        rb.AddForce(force);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var otherGO = other.gameObject;
+        if (otherGO.CompareTag("Collectible"))
+        {
+            otherGO.GetComponent<Collectible>().Collect();
+        }
+    }
+
+    public float GetDistanceToCommander()
     {
         return (commander.transform.position - this.transform.position).magnitude;
         // Debug.Log("Distance: " + distance);

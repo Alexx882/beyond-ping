@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        moveAction = InputSystem.actions.FindAction("Move");
     }
 
     // Update is called once per frame
@@ -25,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
             Respawn();
         }
 
+        MoveOnInput();
+
         // todo controller input
         // Vector2 moveValue = moveAction.ReadValue<Vector2>();
         // Debug.Log(moveValue);
@@ -34,6 +38,17 @@ public class PlayerMovement : MonoBehaviour
         GetDistanceToCommander();
 
         PointInDirectionOfVelocity();
+    }
+
+    private void MoveOnInput()
+    {
+        if (alive)
+        {
+            Vector2 moveValue = moveAction.ReadValue<Vector2>();
+            Debug.Log(moveValue);
+            rb.AddForce(moveValue * moveSpeed);
+            
+        }
     }
 
     private void PointInDirectionOfVelocity()
@@ -62,12 +77,12 @@ public class PlayerMovement : MonoBehaviour
      */
     void OnMove(InputValue value)
     {
-        if (!alive)
+        if (true)
             return;
 
         Vector2 moveValue = value.Get<Vector2>();
-        // Debug.Log(moveValue);
-        rb.linearVelocity = moveValue * moveSpeed;
+        Debug.Log(moveValue);
+        rb.AddForce(moveValue * moveSpeed);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -83,6 +98,6 @@ public class PlayerMovement : MonoBehaviour
     void GetDistanceToCommander()
     {
         var distance = (commander.transform.position - this.transform.position).magnitude;
-        Debug.Log("Distance: " + distance);
+        // Debug.Log("Distance: " + distance);
     }
 }

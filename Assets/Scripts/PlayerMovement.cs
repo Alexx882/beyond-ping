@@ -1,9 +1,11 @@
 using System;
 using System.Diagnostics;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 using Debug = UnityEngine.Debug;
 
 public class PlayerMovement : MonoBehaviour
@@ -14,31 +16,39 @@ public class PlayerMovement : MonoBehaviour
     private Queue<(double,Vector2)> movementQueue;
     public bool hasTakenOff = false;
     public bool isAlive = true;
+    public GameObject thruster;
     Rigidbody2D rb;
-    InputAction moveAction;
     TrailRenderer trailRenderer;
     public float maxVelocity = 100.0f;
+
+    public float maxThrusterAnimationDelay = 0.1f;
+    private float _lastInputTime;
+    private Vector2 _lastInput;
+    private ParticleSystem _thrusterParticleSystem;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        moveAction = InputSystem.actions.FindAction("Move");
         movementQueue = new Queue<(double,Vector2)>();
         trailRenderer = this.GetComponent<TrailRenderer>();
+        _thrusterParticleSystem = thruster.GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButtonDown("Jump"))
         {
             Respawn();
         }
 
         MoveOnInput();
         
-        PointInDirectionOfVelocity();
+        // PointInDirectionOfVelocity();
+        
+        thruster.transform.position = transform.position;
+        PointThrusterInInputDirection();
     }
 
     private void MoveOnInput()
@@ -67,10 +77,10 @@ public class PlayerMovement : MonoBehaviour
                 }
                 rb.AddForce(moveValue * moveSpeed);
                 rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxVelocity);
-                
+
+                _lastInput = moveValue;
+                _lastInputTime = Time.time;
             }
-            
-            
         }
     }
 
@@ -84,29 +94,35 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void PointThrusterInInputDirection()
+    {
+        if (Time.time > _lastInputTime + maxThrusterAnimationDelay)
+        {
+            var emission = _thrusterParticleSystem.emission;
+            emission.enabled = false;
+            _lastInput = Vector2.zero;
+        } else if (_lastInput != Vector2.zero)
+        {
+            var emission = _thrusterParticleSystem.emission;
+            emission.enabled = true;
+            var thrusterAngle = Mathf.Atan2(-_lastInput.y, -_lastInput.x) * Mathf.Rad2Deg;
+            var targetRotation = Quaternion.Euler(0f, 0f, thrusterAngle + 90);
+            thruster.transform.rotation = Quaternion.RotateTowards(thruster.transform.rotation, targetRotation, Time.deltaTime * 1000f);
+        }
+    }
+
     private void Respawn()
     {
         trailRenderer.emitting = false;
         hasTakenOff = false;
+        movementQueue.Clear();
         this.transform.position = new Vector3(0, 3, 0);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = 0f;
         this.transform.rotation = Quaternion.identity;
+        
 
         isAlive = true;
-    }
-
-    /**
-     * Triggered with the new Input System
-     */
-    void OnMove(InputValue value)
-    {
-        if (true)
-            return;
-
-        Vector2 moveValue = value.Get<Vector2>();
-        Debug.Log(moveValue);
-        rb.AddForce(moveValue * moveSpeed);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -119,27 +135,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         var otherGO = other.gameObject;
-        if (otherGO.CompareTag("GravityRadius"))
+        if (otherGO.CompareTag("Collectible"))
         {
-            // inside a planet's gravity
-            Vector2 direction = otherGO.transform.position - transform.position;
-            float distanceSqr = direction.sqrMagnitude;
-            
-            if (distanceSqr == 0f) return;
-            
-            var gravityConstant = 10f;
-            
-            float forceMagnitude = gravityConstant * (otherGO.GetComponentInParent<PlanetGravity>().planetMass * 1) / distanceSqr;
-            Vector2 force = direction.normalized * forceMagnitude;
-
-            rb.AddForce(force);
+            otherGO.GetComponent<Collectible>().Collect();
         }
     }
 
-    float GetDistanceToCommander()
+    public float GetDistanceToCommander()
     {
         return (commander.transform.position - this.transform.position).magnitude;
         // Debug.Log("Distance: " + distance);

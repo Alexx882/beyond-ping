@@ -6,3 +6,7 @@ Logs/**
 obj/**
 UserSettings/**
 **/*.csproj
+.vs/**
+.vsconfig
+beyond-ping.sln
+/beyond-ping.sln

@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fded479f529ef478d9fbabcb4696e4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetMass: 2
+  planetMass: 15
 --- !u!1 &4467286130588800958
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 7215599252988725243}
   - component: {fileID: 2390261182918894045}
   - component: {fileID: 4721221101536331463}
+  - component: {fileID: 2992613561285126172}
   m_Layer: 3
   m_Name: Circle
   m_TagString: Obstacle
@@ -152,8 +153,8 @@ SpriteRenderer:
   m_SortingLayerID: -1089109317
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -522987879924544839, guid: 24de17aab14d45e40913c9920adb8ebd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -198,7 +199,20 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 2.3
+--- !u!114 &2992613561285126172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4467286130588800958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48c506522e28a014dbacef56db3460ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateSpeed: 10
 --- !u!1 &5466263036155800112
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,8 +290,8 @@ SpriteRenderer:
   m_SortingLayerID: -1089109317
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  m_Sprite: {fileID: 3418969560160987523, guid: 27585bde020370740b8457d73ebe8515, type: 3}
+  m_Color: {r: 0.4509804, g: 0.3711704, b: 0.34117648, a: 0.039215688}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -322,4 +336,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 5

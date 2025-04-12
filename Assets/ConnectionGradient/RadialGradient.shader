@@ -4,7 +4,7 @@ Shader "Custom/RadialGradient"
     {
         _MainTex ("Base (RGB)", 2D) = "white" { }
         _Center ("Center Position", Vector) = (0, 0, 0, 0)
-        _MaxDistance ("Max Distance", Float) = 10.0
+        _MaxDistance ("Max Distance", Float) = 1.0
         _InnerColor ("Inner Color", Color) = (1, 0, 0, 1)  // Red
         _OuterColor ("Outer Color", Color) = (0, 0, 0, 1)  // Black
     }

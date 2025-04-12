@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - GravityRadius
+  - Background
   - Collectible
   layers:
   - Default

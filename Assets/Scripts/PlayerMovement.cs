@@ -6,14 +6,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 1f;
+    public float moveSpeed = .5f;
     public GameObject commander;
-    public bool alive = true;
     public float maxDelay = 1.5f;
-    
     private Queue<(double,Vector2)> movementQueue;
+    public bool hasTakenOff = false;
+    public bool isAlive = true;
     Rigidbody2D rb;
     InputAction moveAction;
+    TrailRenderer trailRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         moveAction = InputSystem.actions.FindAction("Move");
         movementQueue = new Queue<(double,Vector2)>();
+        trailRenderer = this.GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
@@ -38,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveOnInput()
     {
-        if (alive)
+        if (isAlive)
         {
             if (moveAction.ReadValue<Vector2>() != Vector2.zero)
             { 
@@ -51,31 +53,39 @@ public class PlayerMovement : MonoBehaviour
                 
                 if (movementQueue.Peek().Item1 + delay < Time.time * 1000)
                 {
-                    rb.AddForce(movementQueue.Dequeue().Item2 * moveSpeed);
+                    Vector2 moveValue = movementQueue.Dequeue().Item2;
+                    if (!hasTakenOff && moveValue.magnitude > 0.1f)
+                    {
+                        hasTakenOff = true;
+                        trailRenderer.emitting = true;
+                    }
+                    rb.AddForce(moveValue * moveSpeed);
                 }
             }
+            
         }
     }
 
     private void PointInDirectionOfVelocity()
     {
-        if (alive)
+        if (isAlive)
         {
-            // todo
             // Calculate the angle from the velocity direction
             float targetAngle = Mathf.Atan2(-rb.linearVelocity.y, -rb.linearVelocity.x) * Mathf.Rad2Deg;
-
-            transform.rotation = Quaternion.Euler(0f, 0f, targetAngle+90); // Keep rotation on Z-axis
+            transform.rotation = Quaternion.Euler(0f, 0f, targetAngle + 90); // Keep rotation on Z-axis
         }
     }
 
     private void Respawn()
     {
+        trailRenderer.emitting = false;
+        hasTakenOff = false;
         this.transform.position = new Vector3(0, 3, 0);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = 0f;
         this.transform.rotation = Quaternion.identity;
-        alive = true;
+
+        isAlive = true;
     }
 
     /**
@@ -96,7 +106,8 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("DEAD");
-            alive = false;
+            isAlive = false;
+            trailRenderer.emitting = false;
         }
     }
 

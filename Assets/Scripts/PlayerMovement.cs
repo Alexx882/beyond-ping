@@ -26,10 +26,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // todo controller input
-        // Vector2 moveValue = moveAction.ReadValue<Vector2>();
-        // Debug.Log(moveValue);
-        // rb.AddForce(moveValue * moveSpeed);
-        // rb.linearVelocity = moveValue * moveSpeed;
+        if (moveAction != null)
+        {
+            Vector2 moveValue = moveAction.ReadValue<Vector2>();
+            Debug.Log(moveValue);
+            rb.AddForce(moveValue * moveSpeed);
+            rb.linearVelocity = moveValue * moveSpeed;
+        }
+        
 
         GetDistanceToCommander();
 
@@ -42,9 +46,9 @@ public class PlayerMovement : MonoBehaviour
         {
             // todo
             // Calculate the angle from the velocity direction
-            // float targetAngle = Mathf.Atan2(-rb.linearVelocity.y, rb.linearVelocity.x) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(-rb.linearVelocity.y, -rb.linearVelocity.x) * Mathf.Rad2Deg;
 
-            // transform.rotation = Quaternion.Euler(0f, 0f, targetAngle+90); // Keep rotation on Z-axis
+            transform.rotation = Quaternion.Euler(0f, 0f, targetAngle+90); // Keep rotation on Z-axis
         }
     }
 

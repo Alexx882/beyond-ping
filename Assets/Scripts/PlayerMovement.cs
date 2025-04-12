@@ -45,9 +45,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isAlive)
         {
-            if (moveAction.ReadValue<Vector2>() != Vector2.zero)
+            // Vector2 moveInputVector = moveAction.ReadValue<Vector2>();
+            Vector2 moveInputVector = new Vector2(Input.GetAxis("Horizontal"), -Input.GetAxis("Vertical"));
+            
+            if (moveInputVector != Vector2.zero)
             { 
-                movementQueue.Enqueue((Time.time * 1000, moveAction.ReadValue<Vector2>()));
+                movementQueue.Enqueue((Time.time * 1000, moveInputVector));
             }
             
             while (movementQueue.Count > 0 && movementQueue.Peek().Item1 + GetCurrentDelayInMilliseconds() < Time.time * 1000)

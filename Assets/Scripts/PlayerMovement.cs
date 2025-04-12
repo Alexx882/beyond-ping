@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isAlive = true;
     public GameObject thruster;
     Rigidbody2D rb;
-    TrailRenderer trailRenderer;
+    public TrailRenderer trailRenderer;
     public float maxVelocity = 100.0f;
 
     private GameStateScript gameStateScript;

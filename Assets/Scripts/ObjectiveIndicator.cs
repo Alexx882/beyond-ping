@@ -15,7 +15,7 @@ public class ObjectiveIndicator : MonoBehaviour
     {
         foreach (var collectible in gameStateScript.collectibles)
         {
-             (collectible.transform.position - this.transform.position).magnitude;
+             // (collectible.transform.position - this.transform.position).magnitude;
 
         }
     }

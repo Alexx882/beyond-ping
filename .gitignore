@@ -2,3 +2,5 @@ Library/**
 **/.DS_Store
 Temp/**
 Logs/**
+**/.idea
+obj/**

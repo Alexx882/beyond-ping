@@ -46,7 +46,11 @@ public class PlayerMovement : MonoBehaviour
         if (isAlive)
         {
             // Vector2 moveInputVector = moveAction.ReadValue<Vector2>();
-            Vector2 moveInputVector = new Vector2(Input.GetAxis("Horizontal"), -Input.GetAxis("Vertical"));
+            Vector2 moveInputVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+            // TODO FUCK MAC
+            moveInputVector.y = -moveInputVector.y;
+#endif
             
             if (moveInputVector != Vector2.zero)
             { 

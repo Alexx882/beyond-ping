@@ -15,12 +15,7 @@ public class ObjectiveIndicator : MonoBehaviour
     {
         gameStateScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateScript>();
 
-        foreach (var _ in gameStateScript.collectibleSpawnPositions) // always filled
-        {
-            GameObject lineObj = Instantiate(linePrefab);
-            LineRenderer lr = lineObj.GetComponent<LineRenderer>();
-            lines.Add(lr);
-        }
+        Reset();
     }
 
     // Update is called once per frame
@@ -48,6 +43,24 @@ public class ObjectiveIndicator : MonoBehaviour
             }
 
             ++i;
+        }
+    }
+
+    public void Reset()
+    {
+        foreach (var line in lines)
+        {
+            if (!line.IsDestroyed())
+                Destroy(line.gameObject);
+        }
+
+        lines = new List<LineRenderer>();
+        
+        foreach (var _ in gameStateScript.collectibleSpawnPositions) // always filled
+        {
+            GameObject lineObj = Instantiate(linePrefab);
+            LineRenderer lr = lineObj.GetComponent<LineRenderer>();
+            lines.Add(lr);
         }
     }
 }

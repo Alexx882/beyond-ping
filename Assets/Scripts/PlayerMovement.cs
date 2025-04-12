@@ -13,13 +13,16 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = .5f;
     public GameObject commander;
     public float maxDelay = 1.5f;
-    private Queue<(double,Vector2)> movementQueue;
+    private Queue<(double, Vector2)> movementQueue;
     public bool hasTakenOff = false;
     public bool isAlive = true;
     public GameObject thruster;
     Rigidbody2D rb;
     TrailRenderer trailRenderer;
     public float maxVelocity = 100.0f;
+
+    private GameStateScript gameStateScript;
+    private ObjectiveIndicator objectiveIndicator;
 
     public float maxThrusterAnimationDelay = 0.1f;
     private float _lastInputTime;
@@ -29,8 +32,11 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameStateScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateScript>();
+    objectiveIndicator = GetComponent<ObjectiveIndicator>();
+        
         rb = GetComponent<Rigidbody2D>();
-        movementQueue = new Queue<(double,Vector2)>();
+        movementQueue = new Queue<(double, Vector2)>();
         trailRenderer = this.GetComponent<TrailRenderer>();
         _thrusterParticleSystem = thruster.GetComponentInChildren<ParticleSystem>();
     }
@@ -44,9 +50,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         MoveOnInput();
-        
+
         // PointInDirectionOfVelocity();
-        
+
         thruster.transform.position = transform.position;
         PointThrusterInInputDirection();
     }
@@ -61,13 +67,14 @@ public class PlayerMovement : MonoBehaviour
             // TODO FUCK MAC
             moveInputVector.y = -moveInputVector.y;
 #endif
-            
+
             if (moveInputVector != Vector2.zero)
-            { 
+            {
                 movementQueue.Enqueue((Time.time * 1000, moveInputVector));
             }
-            
-            while (movementQueue.Count > 0 && movementQueue.Peek().Item1 + GetCurrentDelayInMilliseconds() < Time.time * 1000)
+
+            while (movementQueue.Count > 0 &&
+                   movementQueue.Peek().Item1 + GetCurrentDelayInMilliseconds() < Time.time * 1000)
             {
                 Vector2 moveValue = movementQueue.Dequeue().Item2;
                 if (!hasTakenOff && moveValue.magnitude > 0.1f)
@@ -75,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
                     hasTakenOff = true;
                     trailRenderer.emitting = true;
                 }
+
                 rb.AddForce(moveValue * moveSpeed);
                 rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxVelocity);
 
@@ -84,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void PointInDirectionOfVelocity() 
+    private void PointInDirectionOfVelocity()
     {
         if (isAlive)
         {
@@ -101,26 +109,34 @@ public class PlayerMovement : MonoBehaviour
             var emission = _thrusterParticleSystem.emission;
             emission.enabled = false;
             _lastInput = Vector2.zero;
-        } else if (_lastInput != Vector2.zero)
+        }
+        else if (_lastInput != Vector2.zero)
         {
             var emission = _thrusterParticleSystem.emission;
             emission.enabled = true;
             var thrusterAngle = Mathf.Atan2(-_lastInput.y, -_lastInput.x) * Mathf.Rad2Deg;
             var targetRotation = Quaternion.Euler(0f, 0f, thrusterAngle + 90);
-            thruster.transform.rotation = Quaternion.RotateTowards(thruster.transform.rotation, targetRotation, Time.deltaTime * 1000f);
+            thruster.transform.rotation =
+                Quaternion.RotateTowards(thruster.transform.rotation, targetRotation, Time.deltaTime * 1000f);
         }
     }
 
     private void Respawn()
     {
+        gameStateScript.Reset();
+
+        objectiveIndicator.Reset();
+        
+        // reset internal state
         trailRenderer.emitting = false;
         hasTakenOff = false;
         movementQueue.Clear();
+
+        // reset world position
         this.transform.position = new Vector3(0, 3, 0);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = 0f;
         this.transform.rotation = Quaternion.identity;
-        
 
         isAlive = true;
     }
@@ -151,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     float GetCurrentDelayInMilliseconds()
-    {   
+    {
         //Debug.Log(GetDistanceToCommander());
         return maxDelay / 100 * GetDistanceToCommander() * 1000;
     }

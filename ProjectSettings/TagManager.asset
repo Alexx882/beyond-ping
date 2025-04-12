@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - GravityRadius
+  - Collectible
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Planet
   - Water
   - UI
-  - 
+  - Collectible
   - 
   - 
   - 

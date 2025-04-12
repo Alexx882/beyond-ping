@@ -1,6 +1,6 @@
 using System;
 using System.Diagnostics;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -10,11 +10,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = .5f;
     public GameObject commander;
-
-    public bool isAlive = true;
-
+    public float maxDelay = 1.5f;
+    private Queue<(double,Vector2)> movementQueue;
     public bool hasTakenOff = false;
-
+    public bool isAlive = true;
     Rigidbody2D rb;
     InputAction moveAction;
     TrailRenderer trailRenderer;
@@ -24,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         moveAction = InputSystem.actions.FindAction("Move");
+        movementQueue = new Queue<(double,Vector2)>();
         trailRenderer = this.GetComponent<TrailRenderer>();
     }
 
@@ -36,23 +36,35 @@ public class PlayerMovement : MonoBehaviour
         }
 
         MoveOnInput();
+        
         PointInDirectionOfVelocity();
-
-        GetDistanceToCommander();
     }
 
     private void MoveOnInput()
     {
         if (isAlive)
         {
-            Vector2 moveValue = moveAction.ReadValue<Vector2>();
-            if (!hasTakenOff && moveValue.magnitude > 0.1f)
-            {
-                hasTakenOff = true;
-                trailRenderer.emitting = true;
+            if (moveAction.ReadValue<Vector2>() != Vector2.zero)
+            { 
+                movementQueue.Enqueue((Time.time * 1000, moveAction.ReadValue<Vector2>()));
             }
 
-            rb.AddForce(moveValue * moveSpeed);
+            if (movementQueue.Count > 0)
+            {
+                float delay = GetCurrentDelayInMilliseconds();
+                
+                if (movementQueue.Peek().Item1 + delay < Time.time * 1000)
+                {
+                    Vector2 moveValue = movementQueue.Dequeue().Item2;
+                    if (!hasTakenOff && moveValue.magnitude > 0.1f)
+                    {
+                        hasTakenOff = true;
+                        trailRenderer.emitting = true;
+                    }
+                    rb.AddForce(moveValue * moveSpeed);
+                }
+            }
+            
         }
     }
 
@@ -124,7 +136,13 @@ public class PlayerMovement : MonoBehaviour
 
     void GetDistanceToCommander()
     {
-        var distance = (commander.transform.position - this.transform.position).magnitude;
+        return (commander.transform.position - this.transform.position).magnitude;
         // Debug.Log("Distance: " + distance);
+    }
+
+    float GetCurrentDelayInMilliseconds()
+    {   
+        //Debug.Log(GetDistanceToCommander());
+        return maxDelay / 100 * GetDistanceToCommander() * 1000;
     }
 }

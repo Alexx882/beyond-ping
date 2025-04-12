@@ -556,23 +556,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1928343760748064921, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 6.928203
       objectReference: {fileID: 0}
     - target: {fileID: 1928343760748064921, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 6.928203
       objectReference: {fileID: 0}
     - target: {fileID: 1928343760748064921, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 6.928203
       objectReference: {fileID: 0}
     - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
       propertyPath: m_LocalPosition.x
@@ -621,6 +621,14 @@ PrefabInstance:
     - target: {fileID: 6593099084127222866, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
       propertyPath: gravityScale
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842897954300044232, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: dragFactor
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842897954300044232, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: planetMass
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -907,39 +915,20 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6803509863604077636, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
+      propertyPath: gravityConstant
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5311876535142779280, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7016113542485264565}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
---- !u!1 &7016113542485264555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5311876535142779280, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
-  m_PrefabInstance: {fileID: 7016113542485264554}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7016113542485264558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4563637959820944083, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
   m_PrefabInstance: {fileID: 7016113542485264554}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7016113542485264565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7016113542485264555}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c249705cf27147fdb70dddedef21454, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravityStrength: 10
-  gravityRange: 50
-  planetLayerName: Planet
 --- !u!1001 &7343737594769365768
 PrefabInstance:
   m_ObjectHideFlags: 0

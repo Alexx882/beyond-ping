@@ -1,23 +1,23 @@
 using UnityEngine;
 
-public class PlanetGravity : MonoBehaviour
+public class PlanetGravityRadius : MonoBehaviour
 {
     public float planetMass = 2;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ApplyGravityForMass();
+        DrawGravityRadiusForMass();
     }
     void OnValidate()
     {
-        ApplyGravityForMass();
+        DrawGravityRadiusForMass();
     }
 
     /// <summary>
     /// Applies based on planet mass and transform scale
     /// </summary>
-    private void ApplyGravityForMass()
+    private void DrawGravityRadiusForMass()
     {
         var gravityScale = Mathf.Sqrt(transform.localScale.x);
         var radius = planetMass * gravityScale;

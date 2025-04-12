@@ -15,10 +15,16 @@ public class PlayerMovement : MonoBehaviour
     private Queue<(double,Vector2)> movementQueue;
     public bool hasTakenOff = false;
     public bool isAlive = true;
+    public GameObject thruster;
     Rigidbody2D rb;
     InputAction moveAction;
     TrailRenderer trailRenderer;
     public float maxVelocity = 100.0f;
+
+    public float maxThrusterAnimationDelay = 0.1f;
+    private float _lastInputTime;
+    private Vector2 _lastInput;
+    private ParticleSystem _thrusterParticleSystem;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         movementQueue = new Queue<(double,Vector2)>();
         trailRenderer = this.GetComponent<TrailRenderer>();
+        _thrusterParticleSystem = thruster.GetComponentInChildren<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -40,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
         MoveOnInput();
         
         PointInDirectionOfVelocity();
+        
+        thruster.transform.position = transform.position;
+        PointThrusterInInputDirection();
     }
 
     private void MoveOnInput()
@@ -68,10 +78,10 @@ public class PlayerMovement : MonoBehaviour
                 }
                 rb.AddForce(moveValue * moveSpeed);
                 rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxVelocity);
-                
+
+                _lastInput = moveValue;
+                _lastInputTime = Time.time;
             }
-            
-            
         }
     }
 
@@ -82,6 +92,23 @@ public class PlayerMovement : MonoBehaviour
             // Calculate the angle from the velocity direction
             float targetAngle = Mathf.Atan2(-rb.linearVelocity.y, -rb.linearVelocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, targetAngle + 90); // Keep rotation on Z-axis
+        }
+    }
+
+    private void PointThrusterInInputDirection()
+    {
+        if (Time.time > _lastInputTime + maxThrusterAnimationDelay)
+        {
+            var emission = _thrusterParticleSystem.emission;
+            emission.enabled = false;
+            _lastInput = Vector2.zero;
+        } else if (_lastInput != Vector2.zero)
+        {
+            var emission = _thrusterParticleSystem.emission;
+            emission.enabled = true;
+            var thrusterAngle = Mathf.Atan2(-_lastInput.y, -_lastInput.x) * Mathf.Rad2Deg;
+            var targetRotation = Quaternion.Euler(0f, 0f, thrusterAngle + 90);
+            thruster.transform.rotation = Quaternion.RotateTowards(thruster.transform.rotation, targetRotation, Time.deltaTime * 1000f);
         }
     }
 

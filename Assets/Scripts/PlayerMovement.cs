@@ -29,16 +29,6 @@ public class PlayerMovement : MonoBehaviour
 
         MoveOnInput();
 
-        // todo controller input
-        if (moveAction != null)
-        {
-            Vector2 moveValue = moveAction.ReadValue<Vector2>();
-            Debug.Log(moveValue);
-            rb.AddForce(moveValue * moveSpeed);
-            rb.linearVelocity = moveValue * moveSpeed;
-        }
-        
-
         GetDistanceToCommander();
 
         PointInDirectionOfVelocity();

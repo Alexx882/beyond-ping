@@ -125,19 +125,6 @@ public class PlayerMovement : MonoBehaviour
         isAlive = true;
     }
 
-    /**
-     * Triggered with the new Input System
-     */
-    void OnMove(InputValue value)
-    {
-        if (true)
-            return;
-
-        Vector2 moveValue = value.Get<Vector2>();
-        Debug.Log(moveValue);
-        rb.AddForce(moveValue * moveSpeed);
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Obstacle"))
@@ -146,31 +133,6 @@ public class PlayerMovement : MonoBehaviour
             isAlive = false;
             trailRenderer.emitting = false;
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        var otherGO = other.gameObject;
-        if (otherGO.CompareTag("GravityRadius"))
-        {
-            ApplyPlanetGravity(otherGO);
-        }
-    }
-
-    private void ApplyPlanetGravity(GameObject otherGO)
-    {
-        // inside a planet's gravity
-        Vector2 direction = otherGO.transform.position - transform.position;
-        float distanceSqr = direction.sqrMagnitude;
-            
-        if (distanceSqr == 0f) return;
-            
-        var gravityConstant = 10f;
-            
-        float forceMagnitude = gravityConstant * (otherGO.GetComponentInParent<PlanetGravity>().planetMass * 1) / distanceSqr;
-        Vector2 force = direction.normalized * forceMagnitude;
-
-        rb.AddForce(force);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

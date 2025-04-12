@@ -1,44 +1,43 @@
 using UnityEngine;
 
-
 public class PlayerGravityDrag : MonoBehaviour
 {
-    public float gravityStrength = 10f;
-    public float gravityRange = 50f; // Max range planets affect the object
-    public string planetLayerName = "Planet"; // or "Obstacle" if you decide not to change layers
+    public float gravityConstant = 10f;
+    
+    Rigidbody2D rb;
 
-    private Rigidbody2D rb;
-    private int planetLayerMask;
-
-    void Awake()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        planetLayerMask = 1 << LayerMask.NameToLayer(planetLayerName); // bitmask for OverlapCircleAll    }
     }
 
-    void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
-        Collider2D[] planetColliders = Physics2D.OverlapCircleAll(rb.position, gravityRange, planetLayerMask);
-
-        Debug.Log(planetColliders.Length);
-        return;
-        // Vector2 totalGravity = Vector2.zero;
-        //
-        // foreach (GameObject obj in allObjects)
-        // {
-        //     if (obj.layer != planetLayer) continue;
-        //
-        //     Vector2 direction = (Vector2)obj.transform.position - rb.position;
-        //     float distanceSqr = direction.sqrMagnitude;
-        //
-        //     if (distanceSqr == 0) continue; // avoid division by zero
-        //
-        //     // Inverse square gravity
-        //     Vector2 force = direction.normalized * (gravityStrength / distanceSqr);
-        //     totalGravity += force;
-        // }
-        //
-        // rb.AddForce(totalGravity);
     }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        var otherGO = other.gameObject;
+        if (otherGO.CompareTag("GravityRadius"))
+        {
+            ApplyPlanetGravity(otherGO);
+        }
+    }
+
+    private void ApplyPlanetGravity(GameObject otherGO)
+    {
+        // inside a planet's gravity
+        Vector2 direction = otherGO.transform.position - transform.position;
+        float distanceSqr = direction.sqrMagnitude;
+
+        if (distanceSqr == 0f) return;
+
+        float forceMagnitude = 
+            gravityConstant * otherGO.GetComponentInParent<PlanetGravityRadius>().planetMass / distanceSqr;
+        Vector2 force = direction.normalized * forceMagnitude;
+
+        rb.AddForce(force);
+    }
 }

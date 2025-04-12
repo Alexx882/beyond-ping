@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5368081674180907899}
   - component: {fileID: 5485771108952991222}
   - component: {fileID: 4307472095227082832}
+  - component: {fileID: 6803509863604077636}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Player
@@ -128,13 +129,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cf19f39139a420f9907dd696fe1eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
+  moveSpeed: 2
   commander: {fileID: 0}
-  maxDelay: 2.5
+  maxDelay: 3
   hasTakenOff: 0
   isAlive: 1
   thruster: {fileID: 0}
-  maxVelocity: 7
+  maxVelocity: 8
+  maxThrusterAnimationDelay: 0.1
 --- !u!96 &4307472095227082832
 TrailRenderer:
   serializedVersion: 3
@@ -242,6 +244,19 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &6803509863604077636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5311876535142779280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f753da1bf0e6406b9d408e0879adbdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityConstant: 20
 --- !u!1 &5668588085441791004
 GameObject:
   m_ObjectHideFlags: 0

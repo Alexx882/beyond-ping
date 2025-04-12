@@ -75,6 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetMass: 2
+  dragFactor: 5
 --- !u!1 &4467286130588800958
 GameObject:
   m_ObjectHideFlags: 0

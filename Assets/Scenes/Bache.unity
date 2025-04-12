@@ -447,6 +447,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c36949f3c3954513ba90ad8aa7992ca, type: 3}
+--- !u!1001 &1265950578
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1049907053661673819, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_Name
+      value: Planet (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.5012314
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.6205099
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154736229715270400, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
 --- !u!1001 &1312107689
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -458,6 +519,18 @@ PrefabInstance:
     - target: {fileID: 1049907053661673819, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
       propertyPath: m_Name
       value: Planet (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928343760748064921, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.4641016
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928343760748064921, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.4641016
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928343760748064921, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.4641016
       objectReference: {fileID: 0}
     - target: {fileID: 2162583415050843356, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
       propertyPath: m_LocalScale.x
@@ -507,6 +580,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3154736229715270400, guid: b199cf8a98c6d4e6e8f9112377bdeb06, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -633,6 +710,10 @@ PrefabInstance:
       propertyPath: commander
       value: 
       objectReference: {fileID: 79122899}
+    - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
+      propertyPath: moveSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
       propertyPath: maxVelocity
       value: 5
@@ -769,3 +850,4 @@ SceneRoots:
   - {fileID: 3537425847481985710}
   - {fileID: 7343737594769365768}
   - {fileID: 1312107689}
+  - {fileID: 1265950578}

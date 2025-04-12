@@ -7,11 +7,11 @@ public class PlanetGravityRadius : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        DrawGravityRadiusForMass();
+        // DrawGravityRadiusForMass();
     }
     void OnValidate()
     {
-        DrawGravityRadiusForMass();
+        // DrawGravityRadiusForMass();
     }
 
     /// <summary>

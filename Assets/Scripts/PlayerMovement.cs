@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     InputAction moveAction;
     TrailRenderer trailRenderer;
+    public float maxVelocity = 100.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
             { 
                 movementQueue.Enqueue((Time.time * 1000, moveAction.ReadValue<Vector2>()));
             }
-
+            
             if (movementQueue.Count > 0)
             {
                 float delay = GetCurrentDelayInMilliseconds();
@@ -60,13 +61,15 @@ public class PlayerMovement : MonoBehaviour
                         trailRenderer.emitting = true;
                     }
                     rb.AddForce(moveValue * moveSpeed);
+                    rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxVelocity);
+                    
                 }
             }
             
         }
     }
 
-    private void PointInDirectionOfVelocity()
+    private void PointInDirectionOfVelocity() 
     {
         if (isAlive)
         {

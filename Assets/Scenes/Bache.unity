@@ -629,6 +629,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship
       objectReference: {fileID: 0}
+    - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
+      propertyPath: commander
+      value: 
+      objectReference: {fileID: 79122899}
+    - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
+      propertyPath: maxVelocity
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -654,9 +662,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77cf19f39139a420f9907dd696fe1eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.5
+  moveSpeed: 0.25
   commander: {fileID: 79122899}
-  alive: 1
+  maxDelay: 1.5
+  hasTakenOff: 0
+  isAlive: 1
+  maxVelocity: 100
 --- !u!4 &7016113542485264558 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4563637959820944083, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}

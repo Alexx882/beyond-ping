@@ -50,23 +50,19 @@ public class PlayerMovement : MonoBehaviour
                 movementQueue.Enqueue((Time.time * 1000, moveAction.ReadValue<Vector2>()));
             }
             
-            if (movementQueue.Count > 0)
+            while (movementQueue.Count > 0 && movementQueue.Peek().Item1 + GetCurrentDelayInMilliseconds() < Time.time * 1000)
             {
-                float delay = GetCurrentDelayInMilliseconds();
-                
-                if (movementQueue.Peek().Item1 + delay < Time.time * 1000)
+                Vector2 moveValue = movementQueue.Dequeue().Item2;
+                if (!hasTakenOff && moveValue.magnitude > 0.1f)
                 {
-                    Vector2 moveValue = movementQueue.Dequeue().Item2;
-                    if (!hasTakenOff && moveValue.magnitude > 0.1f)
-                    {
-                        hasTakenOff = true;
-                        trailRenderer.emitting = true;
-                    }
-                    rb.AddForce(moveValue * moveSpeed);
-                    rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxVelocity);
-                    
+                    hasTakenOff = true;
+                    trailRenderer.emitting = true;
                 }
+                rb.AddForce(moveValue * moveSpeed);
+                rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxVelocity);
+                
             }
+            
             
         }
     }
@@ -119,7 +115,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         var otherGO = other.gameObject;
-        Debug.Log(otherGO);
         if (otherGO.CompareTag("GravityRadius"))
         {
             // inside a planet's gravity

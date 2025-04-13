@@ -28,17 +28,18 @@ namespace UI
 
         private int GetDistanceForBreakpoint()
         {
+            var scaledDistance = distance * scale;
             foreach (var breakpoint in roundBreakpoints.OrderBy((x) => x).Reverse())
             {
-                if (distance < breakpoint)
+                if (scaledDistance < breakpoint)
                 {
                     continue;
                 }
                 
-                return Mathf.RoundToInt(distance / breakpoint * scale) * breakpoint;
+                return Mathf.RoundToInt(scaledDistance / breakpoint) * breakpoint;
             }
 
-            return Mathf.RoundToInt(distance * scale);
+            return Mathf.RoundToInt(scaledDistance);
         }
     }
 }

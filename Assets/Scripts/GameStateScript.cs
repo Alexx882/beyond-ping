@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UI;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class GameStateScript : MonoBehaviour
     /// Spawns have to be child of GameState.
     /// </summary>
     public GameObject[] collectibleSpawnPositions;
-
+    
     public GameObject commander;
 
     public GameObject ship;
@@ -21,6 +22,10 @@ public class GameStateScript : MonoBehaviour
 
     public List<GameObject> collectibles = new List<GameObject>();
 
+    public bool CollectedAllCollectibles => collectedCollectibles == collectibleSpawnPositions.Length;
+    public bool hasWon = false;
+    
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -54,6 +59,7 @@ public class GameStateScript : MonoBehaviour
                 Destroy(targetIndicator.gameObject);
         }
 
+        hasWon = false;
         collectedCollectibles = 0;
         collectibles = new List<GameObject>();
         targetIndicatorList = new List<TargetIndicator>();
@@ -63,13 +69,22 @@ public class GameStateScript : MonoBehaviour
     public void IncreaseCollectedCollectibles()
     {
         collectedCollectibles++;
-        if (collectedCollectibles == collectibleSpawnPositions.Length)
+        if (CollectedAllCollectibles)
         {
+            // add indicator back to commander
             TargetIndicator indicator = Instantiate(indicatorPrefab).GetComponent<TargetIndicator>();
             indicator.target = commander.transform;
             indicator.transform.parent = ship.transform;
             indicator.transform.position = ship.transform.position;
             targetIndicatorList.Add(indicator);
+        }
+    }
+
+    public void ReturnedToCommander()
+    {
+        if (CollectedAllCollectibles)
+        {
+            hasWon = true;
         }
     }
 }

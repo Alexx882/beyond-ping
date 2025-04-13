@@ -210,7 +210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5109425451842675931, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
       propertyPath: collectibleSpawnPositions.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5109425451842675931, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
       propertyPath: 'collectibleSpawnPositions.Array.data[0]'
@@ -1116,10 +1116,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Commander
       objectReference: {fileID: 0}
-    - target: {fileID: 8644892777983206115, guid: 4c36949f3c3954513ba90ad8aa7992ca, type: 3}
-      propertyPath: m_TagString
-      value: Respawn
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1196,7 +1192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2861623015827286704, guid: 548f36299f06a874b91f79cdb1816a12, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3090515635407880549, guid: 548f36299f06a874b91f79cdb1816a12, type: 3}
       propertyPath: m_fontAsset

@@ -8,6 +8,7 @@ TagManager:
   - GravityRadius
   - Background
   - Collectible
+  - Commander
   layers:
   - Default
   - TransparentFX

@@ -250,6 +250,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameState
       objectReference: {fileID: 0}
+    - target: {fileID: 2521614348312371182, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 2521614348312371182, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5109425451842675931, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
       propertyPath: hud
       value: 
@@ -265,6 +273,14 @@ PrefabInstance:
     - target: {fileID: 5109425451842675931, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
       propertyPath: tragetIndicator
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354925540641763132, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -57
+      objectReference: {fileID: 0}
+    - target: {fileID: 5354925540641763132, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 31.8
       objectReference: {fileID: 0}
     - target: {fileID: 8858414671515936546, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1319,6 +1335,10 @@ PrefabInstance:
       propertyPath: gizmoColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8624725662738333614, guid: 4c36949f3c3954513ba90ad8aa7992ca, type: 3}
+      propertyPath: lostConnectivity
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 8644892777983206115, guid: 4c36949f3c3954513ba90ad8aa7992ca, type: 3}
       propertyPath: m_Name
       value: Commander
@@ -1347,7 +1367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2861623015827286704, guid: 548f36299f06a874b91f79cdb1816a12, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3090515635407880549, guid: 548f36299f06a874b91f79cdb1816a12, type: 3}
       propertyPath: m_fontAsset
@@ -3122,7 +3142,7 @@ PrefabInstance:
       objectReference: {fileID: 79122899}
     - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
       propertyPath: trailRenderer
@@ -3152,7 +3172,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 7016113542485264554}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970361458}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77cf19f39139a420f9907dd696fe1eda, type: 3}
   m_Name: 
@@ -3220,7 +3240,7 @@ PrefabInstance:
       objectReference: {fileID: 7016113542485264558}
     - target: {fileID: 7143557373852694580, guid: d78912d6cd0e0f048b2e7c6109964059, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7529861015743379696, guid: d78912d6cd0e0f048b2e7c6109964059, type: 3}
       propertyPath: hud
@@ -3232,7 +3252,7 @@ PrefabInstance:
       objectReference: {fileID: 1970361458}
     - target: {fileID: 7529861015743379696, guid: d78912d6cd0e0f048b2e7c6109964059, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7529861015743379696, guid: d78912d6cd0e0f048b2e7c6109964059, type: 3}
       propertyPath: distancePanel

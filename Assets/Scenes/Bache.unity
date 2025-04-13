@@ -3051,29 +3051,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5084480113638049650, guid: 2ed4d8eb59d9a9d46a3c288f314424c1, type: 3}
-      propertyPath: 'soundList.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: ed585276954d7ea49be2e4bd07eaa2bc, type: 3}
-    - target: {fileID: 5084480113638049650, guid: 2ed4d8eb59d9a9d46a3c288f314424c1, type: 3}
-      propertyPath: 'soundList.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 64d9f89f5a70e604b84b5c77460066c8, type: 3}
-    - target: {fileID: 5084480113638049650, guid: 2ed4d8eb59d9a9d46a3c288f314424c1, type: 3}
-      propertyPath: 'soundList.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 99be9933dfc4ba240a9aaca151464f6e, type: 3}
-    - target: {fileID: 5084480113638049650, guid: 2ed4d8eb59d9a9d46a3c288f314424c1, type: 3}
-      propertyPath: 'soundList.Array.data[3]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 349b9bc92b6af6749a4237e571c7af77, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4632957374888645814, guid: 2ed4d8eb59d9a9d46a3c288f314424c1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1302048327}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ed4d8eb59d9a9d46a3c288f314424c1, type: 3}
 --- !u!1001 &7016113542485264554
 PrefabInstance:

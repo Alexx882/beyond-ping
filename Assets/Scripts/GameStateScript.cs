@@ -106,6 +106,13 @@ public class GameStateScript : MonoBehaviour
         if (CollectedAllCollectibles)
         {
             hasWon = true;
+            foreach (var indicator in targetIndicatorList)
+            {
+                if (!indicator.IsDestroyed())
+                {
+                    Destroy(indicator.gameObject);
+                }
+            }
             SoundManager.PlaySound(SoundType.VICTORY, 1.5f);
         }
     }

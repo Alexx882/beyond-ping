@@ -205,8 +205,8 @@ MonoBehaviour:
   connectivitySignal: {fileID: 4077330915601959700}
   connectivityDistanceUI: {fileID: 5477897190412368116}
   playerMovement: {fileID: 0}
-  connectivityDistanceWarning: 45
-  maxDistance: 60
+  connectivityDistanceWarning: 75
+  maxDistance: 100
 --- !u!1 &1426376196612037109
 GameObject:
   m_ObjectHideFlags: 0

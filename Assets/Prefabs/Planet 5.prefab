@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5201850430307748520}
   - component: {fileID: 6842897954300044232}
   m_Layer: 3
-  m_Name: Planet
+  m_Name: Planet 5
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fded479f529ef478d9fbabcb4696e4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetMass: 15
+  planetMass: 75
 --- !u!1 &4467286130588800958
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2162583415050843356}
@@ -153,7 +153,7 @@ SpriteRenderer:
   m_SortingLayerID: -1089109317
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -522987879924544839, guid: 24de17aab14d45e40913c9920adb8ebd, type: 3}
+  m_Sprite: {fileID: -6269249487131338363, guid: b940f749bf7b1644fafe936cbaf173ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -199,7 +199,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 2.3
+  m_Radius: 2.1
 --- !u!114 &2992613561285126172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c506522e28a014dbacef56db3460ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 10
+  rotateSpeed: -20
 --- !u!1 &5466263036155800112
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +241,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2162583415050843356}
@@ -291,7 +291,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 3418969560160987523, guid: 27585bde020370740b8457d73ebe8515, type: 3}
-  m_Color: {r: 0.4509804, g: 0.3711704, b: 0.34117648, a: 0.05882353}
+  m_Color: {r: 0.8160377, g: 0.20785867, b: 0.32961065, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

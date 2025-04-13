@@ -9,7 +9,8 @@ namespace UI
 
         public TextMeshProUGUI text;
         public float distance = 0;
-        public int[] roundBreakpoints = {10, 100, 1000};
+        public int[] roundBreakpoints = {10};
+        public float scale = 10f;
     
         private string _currentText;
         
@@ -27,17 +28,18 @@ namespace UI
 
         private int GetDistanceForBreakpoint()
         {
+            var scaledDistance = distance * scale;
             foreach (var breakpoint in roundBreakpoints.OrderBy((x) => x).Reverse())
             {
-                if (distance < breakpoint)
+                if (scaledDistance < breakpoint)
                 {
                     continue;
                 }
                 
-                return Mathf.RoundToInt(distance / breakpoint) * breakpoint;
+                return Mathf.RoundToInt(scaledDistance / breakpoint) * breakpoint;
             }
 
-            return Mathf.RoundToInt(distance);
+            return Mathf.RoundToInt(scaledDistance);
         }
     }
 }

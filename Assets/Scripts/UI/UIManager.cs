@@ -29,10 +29,26 @@ namespace UI
             var currentDistance = playerMovement.GetDistanceToCommander();
             connectivitySignal.currentDistance = currentDistance;
             connectivityDistanceUI.distance = currentDistance;
-            warningSignal.SetActive(currentDistance > connectivityDistanceWarning);
-            
-            lowConnectivityText.SetActive(currentDistance > connectivityDistanceWarning && currentDistance < maxDistance);
-            signalLostText.SetActive(currentDistance >= maxDistance);
+
+            if (playerMovement.isAlive)
+            {
+                warningSignal.SetActive(currentDistance > connectivityDistanceWarning);
+                lowConnectivityText.SetActive(currentDistance > connectivityDistanceWarning &&
+                                              currentDistance < maxDistance);
+                signalLostText.SetActive(currentDistance >= maxDistance);
+                
+                if (currentDistance >= maxDistance)
+                {
+                    playerMovement.isAlive = false;
+                    playerMovement.trailRenderer.emitting = false;
+                }
+            }
+            else
+            {
+                warningSignal.SetActive(true);
+                signalLostText.SetActive(true);
+                lowConnectivityText.SetActive(false);
+            }
         }
     }
 }

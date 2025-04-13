@@ -1,3 +1,4 @@
+using Unity.Mathematics.Geometry;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -28,7 +29,7 @@ namespace UI
         {
             var currentDistance = playerMovement.GetDistanceToCommander();
             connectivitySignal.currentDistance = currentDistance;
-            connectivityDistanceUI.distance = currentDistance;
+            connectivityDistanceUI.ping = Mathf.RoundToInt(playerMovement.GetCurrentDelayInMilliseconds());
 
             if (playerMovement.isAlive)
             {

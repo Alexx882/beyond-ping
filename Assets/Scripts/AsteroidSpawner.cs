@@ -44,7 +44,7 @@ public class AsteroidSpawner : MonoBehaviour
         var asteroid = Instantiate(asteroidPrefab, spawn.transform);
         var rigidBody = asteroid.GetComponentInChildren<Rigidbody2D>();
         rigidBody.AddForce(impulse * shootDirection, ForceMode2D.Impulse);
-        rigidBody.AddTorque(Random.Range(-2, 2), ForceMode2D.Impulse);
+        rigidBody.AddTorque(Random.Range(-1, 1), ForceMode2D.Impulse);
         
         var nextSpawn = Random.Range(rate - noise, rate + noise);
         Invoke(nameof(SpawnAsteroid), nextSpawn);

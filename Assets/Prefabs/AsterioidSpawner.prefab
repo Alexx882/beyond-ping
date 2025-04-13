@@ -118,9 +118,9 @@ MonoBehaviour:
   - {fileID: 5010321221798660539}
   rate: 1
   noise: 0.4
-  force: 5
-  forceNoise: 2
-  angleNoise: 3
+  force: 3
+  forceNoise: 0.5
+  angleNoise: 15
 --- !u!1 &2079479148954771015
 GameObject:
   m_ObjectHideFlags: 0

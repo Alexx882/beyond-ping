@@ -106,6 +106,7 @@ public class GameStateScript : MonoBehaviour
         if (CollectedAllCollectibles)
         {
             hasWon = true;
+            SoundManager.PlaySound(SoundType.VICTORY, 1.5f);
         }
     }
 }

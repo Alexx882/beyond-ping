@@ -40,14 +40,17 @@ public class PlayerMovement : MonoBehaviour
         _thrusterParticleSystem = thruster.GetComponentInChildren<ParticleSystem>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {
             Respawn();
         }
-
+    }
+    
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         MoveOnInput();
 
         // PointInDirectionOfVelocity();

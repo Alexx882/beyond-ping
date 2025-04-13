@@ -2793,6 +2793,10 @@ PrefabInstance:
       value: Ship
       objectReference: {fileID: 0}
     - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
+      propertyPath: maxDelay
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
       propertyPath: thruster
       value: 
       objectReference: {fileID: 415309580}
@@ -2802,16 +2806,20 @@ PrefabInstance:
       objectReference: {fileID: 79122899}
     - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
       propertyPath: moveSpeed
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
       propertyPath: maxVelocity
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
+      propertyPath: trailRenderer
+      value: 
+      objectReference: {fileID: 7016113542485264561}
     - target: {fileID: 5485771108952991222, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
       propertyPath: maxThrusterAnimationDelay
       value: 0.1
@@ -2840,11 +2848,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 7016113542485264554}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970361458}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77cf19f39139a420f9907dd696fe1eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!96 &7016113542485264561 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 4307472095227082832, guid: 8bda59a7f7b214df7aca35e4807335de, type: 3}
+  m_PrefabInstance: {fileID: 7016113542485264554}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8235451615039152921
 PrefabInstance:
   m_ObjectHideFlags: 0

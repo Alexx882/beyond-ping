@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerGravityDrag : MonoBehaviour
@@ -12,13 +13,10 @@ public class PlayerGravityDrag : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator OnTriggerStay2D(Collider2D other)
     {
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
+        yield return new WaitForFixedUpdate();
+        
         var otherGO = other.gameObject;
         if (otherGO.CompareTag("GravityRadius"))
         {

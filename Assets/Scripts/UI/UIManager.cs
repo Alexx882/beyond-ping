@@ -40,6 +40,7 @@ namespace UI
                 
                 if (currentDistance >= maxDistance)
                 {
+                    SoundManager.PlaySound(SoundType.LOST, 1.0f);
                     playerMovement.isAlive = false;
                     playerMovement.trailRenderer.emitting = false;
                 }

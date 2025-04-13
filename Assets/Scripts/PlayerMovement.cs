@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
                 rb.AddForce(moveValue * moveSpeed);
                 rb.linearVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxVelocity);
+                SoundManager.PlayThruster();
 
                 _lastInput = moveValue;
                 _lastInputTime = Time.time;
@@ -146,6 +147,10 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("DEAD");
+            if (isAlive)
+            {
+                SoundManager.PlaySound(SoundType.CRASH, 1.5f);
+            }
             isAlive = false;
             trailRenderer.emitting = false;
         }
@@ -160,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
         var otherGO = other.gameObject;
         if (otherGO.CompareTag("Collectible"))
         {
+            SoundManager.PlaySound(SoundType.PICKUP, 1.5f);
             otherGO.GetComponent<Collectible>().Collect();
         }
     }

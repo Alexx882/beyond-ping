@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerGravityDrag : MonoBehaviour
 {
     public float gravityConstant = 10f;
-    
+
     Rigidbody2D rb;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,10 +34,11 @@ public class PlayerGravityDrag : MonoBehaviour
 
         if (distanceSqr == 0f) return;
 
-        float forceMagnitude = 
+        float forceMagnitude =
             gravityConstant * otherGO.GetComponentInParent<PlanetGravityRadius>().planetMass / distanceSqr;
         Vector2 force = direction.normalized * forceMagnitude;
 
-        rb.AddForce(force);
+        if (rb is not null)
+            rb.AddForce(force);
     }
 }

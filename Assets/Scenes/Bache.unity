@@ -193,6 +193,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1970361458}
     - target: {fileID: 5109425451842675931, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
+      propertyPath: commander
+      value: 
+      objectReference: {fileID: 79122899}
+    - target: {fileID: 5109425451842675931, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
       propertyPath: indicatorPrefab
       value: 
       objectReference: {fileID: 8319692941114861624, guid: a22649038e60c4345be0c1e3e35f49dc, type: 3}

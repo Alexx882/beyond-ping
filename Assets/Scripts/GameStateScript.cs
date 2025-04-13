@@ -10,6 +10,8 @@ public class GameStateScript : MonoBehaviour
     /// </summary>
     public GameObject[] collectibleSpawnPositions;
 
+    public GameObject commander;
+
     public GameObject ship;
     public List<TargetIndicator> targetIndicatorList;
 
@@ -63,7 +65,11 @@ public class GameStateScript : MonoBehaviour
         collectedCollectibles++;
         if (collectedCollectibles == collectibleSpawnPositions.Length)
         {
-            Debug.Log("Collected all");
+            TargetIndicator indicator = Instantiate(indicatorPrefab).GetComponent<TargetIndicator>();
+            indicator.target = commander.transform;
+            indicator.transform.parent = ship.transform;
+            indicator.transform.position = ship.transform.position;
+            targetIndicatorList.Add(indicator);
         }
     }
 }

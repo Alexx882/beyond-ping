@@ -312,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textTransform: {fileID: 425925402}
   scrollSpeed: 2
+  scrollSpeedSkip: 15
   endY: 17.5
   nextSceneName: SampleScene
 --- !u!1 &1193197073

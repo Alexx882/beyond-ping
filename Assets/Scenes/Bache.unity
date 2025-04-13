@@ -274,6 +274,10 @@ PrefabInstance:
       propertyPath: tragetIndicator
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5109425451842675931, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
+      propertyPath: numberCollectiblesPerRound
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5354925540641763132, guid: 69932f52d67b94d7bb4996d77e0cfce6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57
@@ -1336,8 +1340,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8624725662738333614, guid: 4c36949f3c3954513ba90ad8aa7992ca, type: 3}
-      propertyPath: lostConnectivity
+      propertyPath: lowConnectivity
       value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8624725662738333614, guid: 4c36949f3c3954513ba90ad8aa7992ca, type: 3}
+      propertyPath: lostConnectivity
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8644892777983206115, guid: 4c36949f3c3954513ba90ad8aa7992ca, type: 3}
       propertyPath: m_Name

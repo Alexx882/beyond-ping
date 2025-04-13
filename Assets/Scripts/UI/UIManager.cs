@@ -9,9 +9,11 @@ namespace UI
         public GameObject warningSignal;
         public GameObject lowConnectivityText;
         public GameObject signalLostText;
+        public GameObject winningText;
         public ConnectivitySignal connectivitySignal;
         public DistanceUI connectivityDistanceUI;
         public PlayerMovement playerMovement;
+        public GameStateScript gameStateScript;
         public float connectivityDistanceWarning;
         public float maxDistance;
         
@@ -22,15 +24,24 @@ namespace UI
             warningSignal.SetActive(false);
             lowConnectivityText.SetActive(false);
             signalLostText.SetActive(false);
+            winningText.SetActive(false);
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (gameStateScript.hasWon)
+            {
+                winningText.SetActive(true);
+                return;
+            }
+            
+            winningText.SetActive(false);
             var currentDistance = playerMovement.GetDistanceToCommander();
             connectivitySignal.currentDistance = currentDistance;
             connectivityDistanceUI.ping = Mathf.RoundToInt(playerMovement.GetCurrentDelayInMilliseconds());
 
+            
             if (playerMovement.isAlive)
             {
                 warningSignal.SetActive(currentDistance > connectivityDistanceWarning);

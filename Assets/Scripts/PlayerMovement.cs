@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         gameStateScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateScript>();
-        
+
         rb = GetComponent<Rigidbody2D>();
         movementQueue = new Queue<(double, Vector2)>();
         trailRenderer = this.GetComponent<TrailRenderer>();
@@ -127,8 +127,7 @@ public class PlayerMovement : MonoBehaviour
     private void Respawn()
     {
         gameStateScript.Reset();
-        
-        
+
         // reset internal state
         trailRenderer.emitting = false;
         hasTakenOff = false;
@@ -154,6 +153,10 @@ public class PlayerMovement : MonoBehaviour
             }
             isAlive = false;
             trailRenderer.emitting = false;
+        }
+        else if (other.gameObject.CompareTag("Commander"))
+        {
+            gameStateScript?.ReturnedToCommander();
         }
     }
 

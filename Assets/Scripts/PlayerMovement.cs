@@ -164,7 +164,7 @@ public class PlayerMovement : MonoBehaviour
         // Debug.Log("Distance: " + distance);
     }
 
-    float GetCurrentDelayInMilliseconds()
+    public float GetCurrentDelayInMilliseconds()
     {
         //Debug.Log(GetDistanceToCommander());
         return maxDelay / 100 * GetDistanceToCommander() * 1000;

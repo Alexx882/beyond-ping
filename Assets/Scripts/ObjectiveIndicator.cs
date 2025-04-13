@@ -38,6 +38,7 @@ public class ObjectiveIndicator : MonoBehaviour
                 Vector2 start = (Vector2)transform.position + (direction * .5f);
                 Vector2 end = start + (direction * magnitude);
 
+                
                 directionLine.SetPosition(0, start);
                 directionLine.SetPosition(1, end);
             }
@@ -49,7 +50,7 @@ public class ObjectiveIndicator : MonoBehaviour
     public void Reset()
     {
         foreach (var line in lines)
-        {
+        { 
             if (!line.IsDestroyed())
                 Destroy(line.gameObject);
         }
@@ -59,8 +60,8 @@ public class ObjectiveIndicator : MonoBehaviour
         foreach (var _ in gameStateScript.collectibleSpawnPositions) // always filled
         {
             GameObject lineObj = Instantiate(linePrefab);
-            LineRenderer lr = lineObj.GetComponent<LineRenderer>();
-            lines.Add(lr);
+            LineRenderer sr = lineObj.GetComponent<LineRenderer>();
+            lines.Add(sr);
         }
     }
 }

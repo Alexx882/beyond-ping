@@ -11,7 +11,11 @@ public class Collectible : MonoBehaviour
         {
             gameState.IncreaseCollectedCollectibles();
         }
-            
+
+        int i = gameState.collectibles.IndexOf(this.gameObject);
+        TargetIndicator targetIndicator = gameState.targetIndicatorList[i];
+        
+        Destroy(targetIndicator.gameObject);
         Destroy(this.gameObject);
     }
 }

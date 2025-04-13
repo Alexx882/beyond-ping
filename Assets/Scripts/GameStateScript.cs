@@ -10,7 +10,11 @@ public class GameStateScript : MonoBehaviour
     /// </summary>
     public GameObject[] collectibleSpawnPositions;
 
+    public GameObject ship;
+    public List<TargetIndicator> targetIndicatorList;
+
     public GameObject collectiblePrefab;
+    public GameObject indicatorPrefab;
     public int collectedCollectibles = 0;
 
     public List<GameObject> collectibles = new List<GameObject>();
@@ -25,7 +29,13 @@ public class GameStateScript : MonoBehaviour
     {
         foreach (var spawn in collectibleSpawnPositions)
         {
-            collectibles.Add(Instantiate(collectiblePrefab, spawn.transform));
+            GameObject target = Instantiate(collectiblePrefab, spawn.transform);
+            collectibles.Add(target);
+            TargetIndicator indicator = Instantiate(indicatorPrefab).GetComponent<TargetIndicator>();
+            indicator.target = target.transform;
+            indicator.transform.parent = ship.transform;
+            indicator.transform.position = ship.transform.position;
+            targetIndicatorList.Add(indicator);
         }
     }
 
@@ -36,9 +46,15 @@ public class GameStateScript : MonoBehaviour
             if (!collectible.IsDestroyed())
                 Destroy(collectible);
         }
+        foreach (var targetIndicator in targetIndicatorList)
+        {
+            if (!targetIndicator.IsDestroyed())
+                Destroy(targetIndicator.gameObject);
+        }
 
         collectedCollectibles = 0;
         collectibles = new List<GameObject>();
+        targetIndicatorList = new List<TargetIndicator>();
         SpawnCollectibles();
     }
 

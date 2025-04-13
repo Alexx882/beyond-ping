@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         gameStateScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameStateScript>();
-    objectiveIndicator = GetComponent<ObjectiveIndicator>();
         
         rb = GetComponent<Rigidbody2D>();
         movementQueue = new Queue<(double, Vector2)>();
@@ -124,8 +123,7 @@ public class PlayerMovement : MonoBehaviour
     private void Respawn()
     {
         gameStateScript.Reset();
-
-        objectiveIndicator.Reset();
+        
         
         // reset internal state
         trailRenderer.emitting = false;

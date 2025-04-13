@@ -45,5 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectibleSpawnPositions: []
+  ship: {fileID: 0}
+  targetIndicatorList: []
   collectiblePrefab: {fileID: 6028905355299959725, guid: f07e33151f99048a0b13c1e1338d7cfc, type: 3}
+  indicatorPrefab: {fileID: 8319692941114861624, guid: a22649038e60c4345be0c1e3e35f49dc, type: 3}
   collectedCollectibles: 0
+  collectibles: []

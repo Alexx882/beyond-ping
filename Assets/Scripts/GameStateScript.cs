@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UI;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = System.Random;
 
 public class GameStateScript : MonoBehaviour
 {
@@ -10,7 +12,12 @@ public class GameStateScript : MonoBehaviour
     /// Spawns have to be child of GameState.
     /// </summary>
     public GameObject[] collectibleSpawnPositions;
-    
+
+    public int numberCollectiblesPerRound;
+
+    private GameObject[] currentRoundCollectibleSpawnPositions;
+
+
     public GameObject commander;
 
     public GameObject ship;
@@ -22,19 +29,20 @@ public class GameStateScript : MonoBehaviour
 
     public List<GameObject> collectibles = new List<GameObject>();
 
-    public bool CollectedAllCollectibles => collectedCollectibles == collectibleSpawnPositions.Length;
+    public bool CollectedAllCollectibles => collectedCollectibles == numberCollectiblesPerRound;
     public bool hasWon = false;
-    
-    
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        CreateNewSpawnPositions();
         SpawnCollectibles();
     }
 
     private void SpawnCollectibles()
     {
-        foreach (var spawn in collectibleSpawnPositions)
+        foreach (var spawn in currentRoundCollectibleSpawnPositions)
         {
             GameObject target = Instantiate(collectiblePrefab, spawn.transform);
             collectibles.Add(target);
@@ -46,6 +54,13 @@ public class GameStateScript : MonoBehaviour
         }
     }
 
+    private void CreateNewSpawnPositions()
+    {
+        var random = new Random();
+        currentRoundCollectibleSpawnPositions =
+            collectibleSpawnPositions.OrderBy(x => random.Next()).Take(numberCollectiblesPerRound).ToArray();
+    }
+
     public void Reset()
     {
         foreach (var collectible in collectibles)
@@ -53,10 +68,16 @@ public class GameStateScript : MonoBehaviour
             if (!collectible.IsDestroyed())
                 Destroy(collectible);
         }
+
         foreach (var targetIndicator in targetIndicatorList)
         {
             if (!targetIndicator.IsDestroyed())
                 Destroy(targetIndicator.gameObject);
+        }
+
+        if (hasWon)
+        {
+            CreateNewSpawnPositions();
         }
 
         hasWon = false;

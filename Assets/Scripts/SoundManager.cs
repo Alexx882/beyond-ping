@@ -8,7 +8,8 @@ public enum SoundType
     THRUSTER,
     PICKUP,
     CRASH,
-    LOST
+    LOST,
+    VICTORY
 }
 
 [RequireComponent(typeof(AudioSource))]

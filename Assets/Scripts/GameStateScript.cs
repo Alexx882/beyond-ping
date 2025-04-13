@@ -113,6 +113,7 @@ public class GameStateScript : MonoBehaviour
                     Destroy(indicator.gameObject);
                 }
             }
+            SoundManager.PlaySound(SoundType.VICTORY, 1.5f);
         }
     }
 }

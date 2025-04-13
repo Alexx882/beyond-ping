@@ -34,15 +34,18 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _FaceDilate: 0.20340523
+    - _FaceDilate: 0.034824982
     - _GradientScale: 10
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
     - _OutlineSoftness: 0.13560349
+    - _OutlineSoftness: 0.023216654
     - _OutlineWidth: 0.2
     - _PerspectiveFilter: 0.875
     - _ScaleRatioA: 0.9
     - _ScaleRatioB: 1
     - _ScaleRatioC: 0.62568915
+    - _ScaleRatioC: 0.5395603
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0

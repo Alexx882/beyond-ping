@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class CameraZoom : MonoBehaviour
 {
-    public float startSize = 2f;
-    public float targetSize = 5f;
-    public float zoomDuration = 3f;
-    public float startDelay = 1f;
+    public float startSize = 0.5f;
+    public float targetSize = 10f;
+    public float zoomDuration = 4f;
+    public float startDelay = 2f;
     public GameObject player;
+    public GameObject hud;
     
     private float startTimer = 0f;
     private float zoomTimer = 0f;
@@ -41,7 +42,8 @@ public class CameraZoom : MonoBehaviour
 
             player.GetComponent<PlayerMovement>().enabled = true;
             player.GetComponent<PlayerGravityDrag>().enabled = true;
-            player.GetComponent<ObjectiveIndicator>().enabled = true;
+            
+            hud.SetActive(true);
         }
     }
 }

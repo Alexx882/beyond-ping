@@ -11,7 +11,6 @@ public class FollowCam : MonoBehaviour
     {
         player.GetComponent<PlayerMovement>().enabled = true;
         player.GetComponent<PlayerGravityDrag>().enabled = true;
-        player.GetComponent<ObjectiveIndicator>().enabled = true;
     }
 
     void LateUpdate()

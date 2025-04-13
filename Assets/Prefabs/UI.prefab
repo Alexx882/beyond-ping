@@ -149,10 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbcc303273f896a4bb0225bb8f32f707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ping: 0
   text: {fileID: 5195295247059936028}
-  distance: 0
-  roundBreakpoints: 0a000000
-  scale: 100
 --- !u!1 &1391880485677787978
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +530,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Distance to Commander
+  m_text: Control Ping
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
